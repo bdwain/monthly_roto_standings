@@ -70,7 +70,7 @@ class EspnStats
                     standings_for_stat[team_id] = points
                 end
                 tied_teams = []
-                points_for_tied = 0
+                points_for_tied = 0.0
                 last_val = nil
             end
             tied_teams << stat_with_team[:team_id]
