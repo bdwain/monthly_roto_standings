@@ -1,0 +1,21 @@
+body
+{
+   width: 1000px;
+   padding: 8 15px;
+   margin: 0 auto;
+}
+
+h1
+{
+   font-family: "merriweather";
+}
+
+#content
+{
+   margin-top: 10px;
+}
+
+li
+{
+   padding-bottom: 10px;
+}

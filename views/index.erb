@@ -1,0 +1,30 @@
+<% @player_standings.each_pair do |month, team_standings| %>
+<div>
+   <h3><%= month %>
+   <table <%="id=\"#{month}\"" %> class="tablesorter statstable">
+      <thead>
+         <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <% team_standings[0][1].keys.each do |key| %>
+               <th><%= key %></th>
+            <% end %>
+            <th>Total</th>
+         </tr>
+      </thead>
+      <tbody>
+         <% team_standings.each_with_index do |team, index| %>
+            <tr>
+               <td><%= index+1 %></td>
+               <td><%= team[0] %></td>
+               <% team[1].values.each do |pts| %>
+                  <td><%= pts %></td>
+               <% end %>
+               <td><%= team[1].values.inject(:+) %></td>
+            </tr>
+         <% end %>
+      </tbody>
+   </table>
+</div>
+<% end %>
+
