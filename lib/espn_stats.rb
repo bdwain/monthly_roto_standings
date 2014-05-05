@@ -55,7 +55,7 @@ class EspnStats
         stats.each_with_index do |team_stats, index|
             stats_with_teams << { :team_id => index, :val => team_stats[stat_name].to_f }
         end
-        stats_with_teams.sort_by! { |x| x[:val] }
+        stats_with_teams.sort_by! { |x| -x[:val] }
         stats_with_teams.reverse! if LOWER_IS_BETTER.include?(stat_name)
         num_teams = stats.length
         standings_for_stat = Array.new(num_teams)
@@ -123,3 +123,4 @@ class EspnStats
         new_standings
     end
 end
+
