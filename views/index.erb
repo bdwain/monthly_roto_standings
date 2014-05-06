@@ -1,26 +1,26 @@
-<% @player_standings.each_pair do |month, team_standings| %>
+<% @roto_standings.standings_by_period.each do |month, period_standings| %>
 <div>
-   <h3><%= month %></h3>
+   <h3><%= month.capitalize %></h3>
    <table <%="id=\"#{month}\"" %> class="tablesorter statstable">
       <thead>
          <tr>
             <th>Rank</th>
             <th>Team</th>
-            <% team_standings[0][1].keys.each do |key| %>
-               <th><%= key %></th>
+            <% @roto_standings.stat_names.each do |stat_name| %>
+               <th><%= stat_name %></th>
             <% end %>
             <th>Total</th>
          </tr>
       </thead>
       <tbody>
-         <% team_standings.each_with_index do |team, index| %>
+         <% period_standings.standings_by_team.each_with_index do |(team_id, team_standings), index| %>
             <tr>
                <td><%= index+1 %></td>
-               <td><%= team[0] %></td>
-               <% team[1].values.each do |pts| %>
-                  <td><%= pts %></td>
+               <td><%= @roto_standings.teams[team_id] %></td>
+               <% team_standings[:by_stat].each do |stat_name, stat_data| %>
+                  <td data-stat-raw="<%= stat_data[:stat_val] %>" data-stat-points="<%= stat_data[:points] %>"><%= stat_data[:points] %></td>
                <% end %>
-               <td><%= team[1].values.inject(:+) %></td>
+               <td><%= team_standings[:total] %></td>
             </tr>
          <% end %>
       </tbody>

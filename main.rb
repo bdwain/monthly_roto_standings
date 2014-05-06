@@ -1,11 +1,11 @@
 require './sinatra/head_includes'
 require 'sinatra'
-require './lib/espn_stats'
+require './lib/espn_stats_fetcher'
+require './lib/roto_standings'
 
 get '/' do
-  @stats = EspnStats.get_all_team_stats
-  @standings = EspnStats.calculate_standings(@stats)
-  @player_standings = EspnStats.get_standings_by_team(@standings)
+  @stats = EspnStatsFetcher.new().get_all_team_stats
+  @roto_standings = RotoStandings.new(@stats)
   js :jquery, :tablesorter, :stats
   css :tablesorter
   erb :index
