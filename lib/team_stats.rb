@@ -19,7 +19,7 @@ class TeamStats
     end
 
     def self.get_stat_names()
-        ActiveStatsConfig::STATS_COLS.delete_if {|stat| stat.nil? || stat == "period" }
+        ActiveStatsConfig::STATS_COLS.reject {|stat| stat.nil? || stat == "period" }
     end
 
 
