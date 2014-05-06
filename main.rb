@@ -4,7 +4,7 @@ require './lib/espn_stats_fetcher'
 require './lib/roto_standings'
 
 get '/' do
-  @stats = EspnStatsFetcher.new().get_all_team_stats
+  @stats = EspnStatsFetcher.new.get_all_team_stats
   @roto_standings = RotoStandings.new(@stats)
   js :jquery, :tablesorter, :stats
   css :tablesorter
@@ -18,3 +18,4 @@ end
 error do
   erb "Error: " + env['sinatra.error'].message
 end
+
