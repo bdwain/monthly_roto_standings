@@ -13,7 +13,7 @@ class RotoStandingsPeriod
 
     private
 
-    def calculate_standings()
+    def calculate_standings
         stat_names = TeamStats::get_stat_names
         standings = {}
         stat_names.each do |stat_name|

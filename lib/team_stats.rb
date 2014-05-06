@@ -14,11 +14,11 @@ class TeamStats
         @stats_by_period[period][stat]
     end
 
-    def get_periods()
+    def get_periods
        @stats_by_period.keys 
     end
 
-    def self.get_stat_names()
+    def self.get_stat_names
         ActiveStatsConfig::STATS_COLS.reject {|stat| stat.nil? || stat == "period" }
     end
 
