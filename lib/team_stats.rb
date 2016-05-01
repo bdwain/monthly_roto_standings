@@ -6,7 +6,7 @@ class TeamStats
 
     def initialize(team_id, stats_by_period)
         @team_id = team_id
-        @team_name = ActiveStatsConfig::TEAM_NAMES[team_id - 1]
+        @team_name = ActiveStatsConfig::TEAMS[team_id]
         @stats_by_period = stats_by_period
     end
 

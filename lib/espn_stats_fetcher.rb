@@ -7,12 +7,12 @@ require_relative 'team_stats'
 class EspnStatsFetcher
 
     def initialize()
-        @num_teams = ActiveStatsConfig::TEAM_NAMES.length
+        @num_teams = ActiveStatsConfig::TEAMS.length
     end
 
     def get_all_team_stats()
         stats = []
-        (0..@num_teams - 1).each do |team_id|
+        ActiveStatsConfig::TEAMS.keys.each do |team_id|
             stats << get_team_stats(team_id)
         end
         stats
@@ -21,13 +21,13 @@ class EspnStatsFetcher
     private
 
     def get_stats_doc(team_id)
-        url = ActiveStatsConfig::STATS_URL % (team_id + 1)
+        url = ActiveStatsConfig::STATS_URL % (team_id)
         Nokogiri::HTML(open(url))
     end
 
     def get_team_stats(team_id)
         raw_stats = get_raw_team_stats(team_id)
-        TeamStats.new(team_id + 1, raw_stats)
+        TeamStats.new(team_id, raw_stats)
     end
      
     def get_raw_team_stats(team_id)
